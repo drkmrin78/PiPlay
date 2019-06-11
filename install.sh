@@ -1,3 +1,2 @@
-sudo apt install libasound2-dev
-pip install setuptools flask pyalsaaudio pafy python-vlc 
-echo "run: export PAFY=internal"
+sudo apt install libasound2-dev vlc
+pip install setuptools flask pyalsaaudio pafy python-vlc youtube-dl 

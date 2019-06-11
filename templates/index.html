@@ -13,6 +13,9 @@
     .submitButtons {
         width: 150px;
     }  
+    li {
+      background-color: lightgray;
+    }
   </style>
   <title>PIPLAY</title> 
 </head>
@@ -34,12 +37,14 @@
 
       </div>
       <div class = "col-md-4 text-center">
-        <div>
-          <h2>Songs in Queue</h2>
+        <h2>Songs in Queue</h2>
+        <ul class="list-group">
+
           {% for i, t, d in queue %}
-          <div class=flash> <span class = "songInterval">{{i}}. </span><span class = "songTitle">{{t}} </span><span class = "songDuration">({{d}})</span> </div>
+          <li class="list-group-item list-group-item-action"> <span class = "songInterval">{{i}}. </span><span class = "songTitle">{{t}} </span><span class = "songDuration">({{d}})</span> </li>
           {% endfor%}
-        </div>
+      
+        </ul>
       </div>
       <div class = "col-md-4 text-right">
           {% block body %}
