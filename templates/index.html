@@ -14,15 +14,15 @@
       </div>
     </div>
     <div class = "row">
-      <div class = "col-md-3 text-left">
+      <div class = "col-md-4 text-left">
         <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: {{vol}}%;" aria-valuenow="{{vol}}" aria-valuemin="0" aria-valuemax="100">{{vol}}%</div>
+            <div class="progress-bar" role="progressbar" style="width: {{vol}}%;" aria-valuenow="{{vol}}" aria-valuemin="0" aria-valuemax="100">Volume: {{vol}}%</div>
         </div>
         <div>Currently playing: {{ current }}</div>
         
 
       </div>
-      <div class = "col-md-3">
+      <div class = "col-md-4 text-center">
         <div>
           <h2>Songs in Queue</h2>
           {% for i, t, d in queue %}
@@ -30,7 +30,7 @@
           {% endfor%}
         </div>
       </div>
-      <div class = "col-md-6 text-right">
+      <div class = "col-md-4 text-right">
           {% block body %}
   
           <form action="/play" method="POST">
