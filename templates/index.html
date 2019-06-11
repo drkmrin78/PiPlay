@@ -15,7 +15,9 @@
     </div>
     <div class = "row">
       <div class = "col-md-3 text-left">
-        <div>Volume is {{ vol }}</div>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{vol}}%;" aria-valuenow="{{vol}}" aria-valuemin="0" aria-valuemax="100">{{vol}}%</div>
+        </div>
         <div>Currently playing: {{ current }}</div>
         
 
@@ -24,7 +26,7 @@
         <div>
           <h2>Songs in Queue</h2>
           {% for i, t, d in queue %}
-          <div class=flash> <span>{{i}}</span><span>{{t}}</span><span>{{d}}</span> </div>
+          <div class=flash> <span class = "songInterval">{{i}}. </span><span class = "songTitle">{{t}} </span><span class = "songDuration">({{d}})</span> </div>
           {% endfor%}
         </div>
       </div>
