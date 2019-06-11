@@ -122,7 +122,7 @@ def index():
     return render_template('index.html',
                            vol=mixer.getvolume()[0],
                            current=current_vid.title if current_vid is not "" else "", 
-                           queue=["%d. %s (%s)" % (i, v.title, v.duration)
+                           queue=[(i, v.title, v.duration)
                                   for i,v in enumerate(queue, start=1)])
 
 @app.route('/play', methods=['POST'])

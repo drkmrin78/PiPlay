@@ -1,37 +1,78 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./main.css">
+  <title>PIPLAY</title> 
+</head>
 <body>
-  <h1>Sandbox PiPlay Server</h1>
-  <p>Enter a YouTube URL to play on the speaker!</p>
-  <div>Volume is {{ vol }}</div>
-  <div>Currently playing: {{ current }}</div>
+  <div class = "container-fluid">
+    <div class = "row">
+      <div class = "col-12">
+        <h1 class = "text-center titleText">Sandbox Jukebox</h1>
+        <p class = "text-center descriptionText">Enter a YouTube URL to play on the speaker!</p>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-md-3 text-left">
+        <div>Volume is {{ vol }}</div>
+        <div>Currently playing: {{ current }}</div>
+        
+
+      </div>
+      <div class = "col-md-3">
+        <div>
+          <h2>Songs in Queue</h2>
+          {% for i, t, d in queue %}
+          <div class=flash> <span>{{i}}</span><span>{{t}}</span><span>{{d}}</span> </div>
+          {% endfor%}
+        </div>
+      </div>
+      <div class = "col-md-6 text-right">
+          {% block body %}
   
-  <div>
-    <h2>Songs in Queue</h2>
-    {% for song in queue %}
-    <div class=flash> {{ song }} </div>
-    {% endfor%}
+          <form action="/play" method="POST">
+            <div class = "input-group">
+                <input type="url" name="yt" placeholder="YouTube URL" class = "form-control inputs">
+                <div class = "input-append">
+                  <input type="submit" value="Add to Queue" class = "btn btn-primary submitButtons">
+                </div>
+            </div>
+
+          </form>
+        
+          <form action="/playnow" method="POST">
+            <div class = "input-group">
+              <input type="url" name="yt" placeholder="YouTube URL" class = "form-control inputs">
+              <div class = "input-group-append">
+                  <input type="submit" value="Play Now" class = "btn btn-primary submitButtons"> 
+              </div>
+            </div>
+          </form>
+        
+          <form action="/vol" method="POST">
+            <div class = "input-group">
+
+              <input type="int" name="vol" placeholder="Volume [0-100]" class = "form-control inputs">
+              <div class = "input-group-append">
+
+                <input type="submit" value="Change Volume" class = "btn btn-primary submitButtons">
+              </div>
+            </div>
+          </form>
+          <form action="/skip" method="POST">
+            <input type="submit" value="Skip" class = "btn btn-danger submitButtons">
+          </form>
+          {% endblock %}
+      </div>
+    </div>
+
+      <br>
+
   </div>
-  <br>
-  {% block body %}
-  <form action="/play" method="POST">
-    <input type="url" name="yt" placeholder="YouTube URL">
-    <input type="submit" value="Add to Queue">
-  </form>
 
-  <form action="/playnow" method="POST">
-    <input type="url" name="yt" placeholder="YouTube URL">
-    <input type="submit" value="Play Now">
-  </form>
-
-  <form action="/vol" method="POST">
-    <input type="int" name="vol" placeholder="Volume [0-100]">
-    <input type="submit" value="Change Volume">
-  </form>
-  <form action="/skip" method="POST">
-    <input type="submit" value="Skip">
-  </form>
-  {% endblock %}
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
